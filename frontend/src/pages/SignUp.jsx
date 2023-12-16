@@ -19,6 +19,24 @@ const SignUp = () => {
       const handleBusinessTypeChange = (e) => {
         setBusinessType(e.target.value);
       };
+        const handleBusiness = () => {
+          if (
+            company == "" ||
+            description == "" ||
+            businessType == "" ||
+            companysize == ""
+          )
+            console.log("zbi");
+          dispatch(
+            CreateBusiness({
+              name: company,
+              description,
+              industry: businessType,
+              CompanySize: companysize,
+              owner: user._id,
+            })
+          );
+        };
 
     const [description,setDescription]=useState("")
     const [name, setName] = useState("");
@@ -66,10 +84,7 @@ const SignUp = () => {
 
   const user = useSelector((state)=>state.auth.user)
   const token = localStorage.getItem("token")
-  const handleBusiness = () =>{
-    if(company == "" || description == "" || businessType == "" || companysize == "") console.log("zbi")
-    dispatch(CreateBusiness({name:company,description,industry : businessType,CompanySize : companysize , owner : user._id}))
-  }
+
   useEffect(()=>{
     if(user){
       handleBusiness()

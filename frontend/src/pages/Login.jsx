@@ -2,12 +2,30 @@ import React, { useState } from "react";
 import { login } from "../redux/slices/authSlice";
 import { useDispatch } from "react-redux";
 import { Toast } from "../toasts"
+import { CreateBusiness } from "../redux/slices/businessSlice";
 const Login = () => {
   const dispatch = useDispatch();
   // State to manage user input
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const handleBusiness = () => {
+    if (
+      company == "" ||
+      description == "" ||
+      businessType == "" ||
+      companysize == ""
+    )
+      console.log("zbi");
+    dispatch(
+      CreateBusiness({
+        name: company,
+        description,
+        industry: businessType,
+        CompanySize: companysize,
+        owner: user._id,
+      })
+    );
+  };
   // Function to handle form submission
   const handleLogin = (e) => {
     e.preventDefault();
